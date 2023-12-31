@@ -24,11 +24,4 @@
     <ProjectReference Include="..\..\..\cmn\CMN\CMN.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Dtos\" />
-    <Folder Include="IRepository\BL\" />
-    <Folder Include="IRepository\DA\" />
-    <Folder Include="Repository\" />
-  </ItemGroup>
-
 </Project>

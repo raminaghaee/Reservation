@@ -26,6 +26,28 @@ namespace CMN.Extentions
             }
             return outputDto;
         }
+        public static TOutput Map<TOutput, TInput>(this TInput inputDto,TOutput entity)
+            where TOutput : class, new()
+            where TInput : class
+        {
+
+            var properties = typeof(TInput).GetProperties()
+                .Where(prop => prop.Name != "Id")
+                .ToList();
+
+            
+
+            foreach (var property in properties)
+            {
+                var value = property.GetValue(inputDto);
+                var outputProperty = typeof(TOutput).GetProperty(property.Name);
+                if (outputProperty != null)
+                {
+                    outputProperty.SetValue(entity, value);
+                }
+            }
+            return entity;
+        }
     }
 
 }

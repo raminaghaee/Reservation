@@ -1,4 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PoolBL;
+using PoolBL.IContext;
+using PoolDA;
 using PoolDA.Contexts;
 using PoolUI.IOC;
 
@@ -11,14 +14,13 @@ public static class HostingExtentions
         builder.Services.AddControllers();
 
         builder.Services.AddDbContext<PoolDbContext>(options =>
-                    options.UseSqlServer(builder.Configuration.GetConnectionString("PoolConnectionString")));
-
+                  options.UseSqlServer(builder.Configuration.GetConnectionString("PoolConnectionString")));
+        builder.Services.IsRegister();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
         //unity Register
-        UnityConfig.IsRegister();
 
 
         return builder.Build();
@@ -31,6 +33,8 @@ public static class HostingExtentions
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+
+        app.UseHttpsRedirection();
 
         app.UseAuthorization();
 
