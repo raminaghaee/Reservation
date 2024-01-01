@@ -10,7 +10,7 @@ public class Pool : BaseEntity
     public ICollection<Employee>? Employees { get; set; }
     public ICollection<Ticket>? Tickets { get; set; }
     public ICollection<Reserved>? Reserveds { get; set; }
-    public ICollection<Sans>? Sans { get; set; }
+    public ICollection<Pool>? Sans { get; set; }
 
     #endregion
     #region Properties

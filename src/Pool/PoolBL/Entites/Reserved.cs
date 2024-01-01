@@ -13,7 +13,7 @@ public class Reserved : BaseEntity
     public int SansId { get; set; }
     // public Sans Sans { get; set; }
 
-    public int UserId { get; set; }
+    public int? UserId { get; set; }
     //public User User { get; set; }
 
     public int TicketId { get; set; }
@@ -25,35 +25,13 @@ public class Reserved : BaseEntity
 
     #region Properties
     /// <summary>
-    /// Confirm or Not Confirm
+    /// Confirm = 3 ,  Not Confirm = 4
     /// in Constant table
     /// </summary>
     public int IsConfirm { get; set; }
 
-    /// <summary>
-    /// yyyy-mm-dd
-    /// </summary>
-    [Column(TypeName = "NCHAR(10)")]
-    public string ConfirmDate { get; set; }
-    /// <summary>
-    /// 00:00
-    /// </summary>
-    [Column(TypeName = "NCHAR(5)")]
-    public string ConfirmTime { get; set; }
-
-    /// <summary>
-    /// yyyy-mm-dd
-    /// </summary>
-
-    [Column(TypeName = "NCHAR(10)")]
-    public string CreateDate { get; set; }
-
-    /// <summary>
-    /// 00:00
-    /// </summary>
-    [Column(TypeName = "NCHAR(5)")]
-    public string CreateTime { get; set; }
-
+    public DateTime ConfirmDateTime { get; set; }
+    public DateTime DateTime { get; set; }
 
     /// <summary>
     /// Internet , Operator , Stand

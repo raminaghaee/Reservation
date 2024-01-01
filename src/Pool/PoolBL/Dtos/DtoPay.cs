@@ -4,22 +4,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace PoolBL;
 public class DtoPay : IBaseDto
 {
+    #region Properties
+
     /// <summary>
     /// Active = 102 , Not Active = 103
     /// In Constant Table
     /// </summary>
     public int ActivedId { get; set; }
-    #region Properties
-    /// <summary>
-    /// yyyy-mm-dd
-    /// </summary>
-    [Column(TypeName = "NCHAR(10)")]
-    public string CreateDate { get; set; }
-    /// <summary>
-    /// 00:00
-    /// </summary>
-    [Column(TypeName = "NCHAR(5)")]
-    public string CreateTime { get; set; }
 
     /// <summary>
     /// VIP , Regolar
@@ -35,4 +26,7 @@ public class DtoPay : IBaseDto
     /// Internet , Operator , Stand
     /// </summary>
     public int CreateTypeId { get; set; }
+    public decimal Price { get; set; }
+
+    #endregion
 }

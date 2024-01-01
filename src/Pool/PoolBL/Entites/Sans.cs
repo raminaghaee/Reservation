@@ -17,10 +17,8 @@ public class Sans : BaseEntity
     /// </summary>
     public int DayOfWeekId { get; set; }
 
-    [Column(TypeName = "NCHAR(5)")]
     public string StartTime { get; set; }
 
-    [Column(TypeName = "NCHAR(5)")]
     public string EndTime { get; set; }
 
     public ushort Capacity { get; set; }

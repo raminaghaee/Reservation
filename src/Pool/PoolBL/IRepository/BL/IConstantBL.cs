@@ -1,4 +1,4 @@
 ﻿namespace PoolBL;
-public interface IConstantBL : IBaseBL<IConstantDA,Constant,dtoConstant>
+public interface IConstantBL : IBaseBL<IConstantDA,Constant,DtoConstant>
 {
 }

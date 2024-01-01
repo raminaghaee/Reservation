@@ -1,12 +1,5 @@
 ﻿using CMN;
 using CMN.Extentions;
-using PoolBL.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Unity;
 
 namespace PoolBL;
 public abstract class BaseBL<T, E, D> : IBaseBL<T, E, D>

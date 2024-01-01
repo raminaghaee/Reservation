@@ -25,16 +25,17 @@ namespace PoolDA.Migrations
             modelBuilder.Entity("PoolBL.Constant", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ActivedId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
 
-                    b.Property<int>("IsActived")
-                        .HasColumnType("int");
+                    b.Property<string>("SubSistem")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -47,7 +48,6 @@ namespace PoolDA.Migrations
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Value")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -59,13 +59,12 @@ namespace PoolDA.Migrations
             modelBuilder.Entity("PoolBL.Employee", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ActivedId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
 
                     b.Property<int>("PoolId")
                         .HasColumnType("int");
@@ -89,27 +88,27 @@ namespace PoolDA.Migrations
             modelBuilder.Entity("PoolBL.Pay", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ActivedId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
 
-                    b.Property<string>("CreateDate")
-                        .IsRequired()
-                        .HasColumnType("NCHAR(10)");
-
-                    b.Property<string>("CreateTime")
-                        .IsRequired()
-                        .HasColumnType("NCHAR(5)");
+                    b.Property<DateTime>("CreateDateTime")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<int>("CreateTypeId")
                         .HasColumnType("int");
 
                     b.Property<int>("PayTypeId")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasPrecision(11, 2)
+                        .HasColumnType("decimal(11,2)");
 
                     b.Property<int>("TicketId")
                         .HasColumnType("int");
@@ -128,13 +127,12 @@ namespace PoolDA.Migrations
             modelBuilder.Entity("PoolBL.Pool", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ActivedId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -150,7 +148,12 @@ namespace PoolDA.Migrations
                         .HasMaxLength(13)
                         .HasColumnType("nvarchar(13)");
 
+                    b.Property<int?>("PoolId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("PoolId");
 
                     b.ToTable("Pool", "Pool");
                 });
@@ -158,32 +161,23 @@ namespace PoolDA.Migrations
             modelBuilder.Entity("PoolBL.Reserved", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ActivedId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
 
-                    b.Property<string>("ConfirmDate")
-                        .IsRequired()
-                        .HasColumnType("NCHAR(10)");
-
-                    b.Property<string>("ConfirmTime")
-                        .IsRequired()
-                        .HasColumnType("NCHAR(5)");
-
-                    b.Property<string>("CreateDate")
-                        .IsRequired()
-                        .HasColumnType("NCHAR(10)");
-
-                    b.Property<string>("CreateTime")
-                        .IsRequired()
-                        .HasColumnType("NCHAR(5)");
+                    b.Property<DateTime>("ConfirmDateTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("CreateTypeId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("DateTime")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<int?>("EmployeeId")
                         .HasColumnType("int");
@@ -200,7 +194,7 @@ namespace PoolDA.Migrations
                     b.Property<int>("TicketId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -221,13 +215,12 @@ namespace PoolDA.Migrations
             modelBuilder.Entity("PoolBL.Sans", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ActivedId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
 
                     b.Property<int>("Capacity")
                         .HasColumnType("int");
@@ -237,14 +230,14 @@ namespace PoolDA.Migrations
 
                     b.Property<string>("EndTime")
                         .IsRequired()
-                        .HasColumnType("NCHAR(5)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PoolId")
                         .HasColumnType("int");
 
                     b.Property<string>("StartTime")
                         .IsRequired()
-                        .HasColumnType("NCHAR(5)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -256,13 +249,12 @@ namespace PoolDA.Migrations
             modelBuilder.Entity("PoolBL.Ticket", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ActivedId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
 
                     b.Property<int>("CreateTypeId")
                         .HasColumnType("int");
@@ -270,17 +262,23 @@ namespace PoolDA.Migrations
                     b.Property<int?>("EmployeeId")
                         .HasColumnType("int");
 
+                    b.Property<DateOnly?>("EndDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("date")
+                        .HasDefaultValueSql("GETDATE()");
+
                     b.Property<int>("PoolId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Price")
-                        .HasPrecision(11, 2)
-                        .HasColumnType("decimal(11,2)");
+                    b.Property<DateOnly?>("StartDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("date")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<int>("TicketTypeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -297,13 +295,12 @@ namespace PoolDA.Migrations
             modelBuilder.Entity("PoolBL.User", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ActivedId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
 
                     b.Property<byte?>("Age")
                         .HasColumnType("tinyint");
@@ -369,6 +366,13 @@ namespace PoolDA.Migrations
                     b.Navigation("Ticket");
                 });
 
+            modelBuilder.Entity("PoolBL.Pool", b =>
+                {
+                    b.HasOne("PoolBL.Pool", null)
+                        .WithMany("Sans")
+                        .HasForeignKey("PoolId");
+                });
+
             modelBuilder.Entity("PoolBL.Reserved", b =>
                 {
                     b.HasOne("PoolBL.Employee", "Employee")
@@ -396,8 +400,7 @@ namespace PoolDA.Migrations
                     b.HasOne("PoolBL.User", null)
                         .WithMany("Reserveds")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Employee");
 
@@ -407,7 +410,7 @@ namespace PoolDA.Migrations
             modelBuilder.Entity("PoolBL.Sans", b =>
                 {
                     b.HasOne("PoolBL.Pool", "Pool")
-                        .WithMany("Sans")
+                        .WithMany()
                         .HasForeignKey("PoolId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -429,9 +432,7 @@ namespace PoolDA.Migrations
 
                     b.HasOne("PoolBL.User", "User")
                         .WithMany("Tickets")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Employee");
 

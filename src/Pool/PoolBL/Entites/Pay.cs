@@ -11,19 +11,11 @@ public class Pay : BaseEntity
     #endregion
 
     #region Properties
-    /// <summary>
-    /// yyyy-mm-dd
-    /// </summary>
-    [Column(TypeName = "NCHAR(10)")]
-    public string CreateDate { get; set; }
-    /// <summary>
-    /// 00:00
-    /// </summary>
-    [Column(TypeName = "NCHAR(5)")]
-    public string CreateTime { get; set; }
+   
+    public DateTime CreateDateTime { get; set; }
 
     /// <summary>
-    /// VIP , Regolar
+    /// VIP , Regolar , New
     /// in Const Table
     /// </summary>
     public int TicketTypeId { get; set; }
@@ -36,6 +28,8 @@ public class Pay : BaseEntity
     /// Internet , Operator , Stand
     /// </summary>
     public int CreateTypeId { get; set; }
+    public decimal Price { get; set; }
+
     #endregion
 }
 

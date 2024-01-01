@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -18,13 +19,12 @@ namespace PoolDA.Migrations
                 schema: "Pool",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    IsActived = table.Column<int>(type: "int", nullable: false),
                     TypeName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Value = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    ActivedId = table.Column<int>(type: "int", nullable: false)
+                    Value = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    SubSistem = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    ActivedId = table.Column<int>(type: "int", nullable: false, defaultValue: 1)
                 },
                 constraints: table =>
                 {
@@ -36,24 +36,29 @@ namespace PoolDA.Migrations
                 schema: "Pool",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Address = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: true),
-                    ActivedId = table.Column<int>(type: "int", nullable: false)
+                    PoolId = table.Column<int>(type: "int", nullable: true),
+                    ActivedId = table.Column<int>(type: "int", nullable: false, defaultValue: 1)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Pool", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Pool_Pool_PoolId",
+                        column: x => x.PoolId,
+                        principalSchema: "Pool",
+                        principalTable: "Pool",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
                 name: "User",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Age = table.Column<byte>(type: "tinyint", nullable: true),
@@ -61,7 +66,7 @@ namespace PoolDA.Migrations
                     UserName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Password = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: true),
-                    ActivedId = table.Column<int>(type: "int", nullable: false)
+                    ActivedId = table.Column<int>(type: "int", nullable: false, defaultValue: 1)
                 },
                 constraints: table =>
                 {
@@ -73,14 +78,13 @@ namespace PoolDA.Migrations
                 schema: "Pool",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     PoolId = table.Column<int>(type: "int", nullable: false),
                     DayOfWeekId = table.Column<int>(type: "int", nullable: false),
-                    StartTime = table.Column<string>(type: "NCHAR(5)", nullable: false),
-                    EndTime = table.Column<string>(type: "NCHAR(5)", nullable: false),
+                    StartTime = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EndTime = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Capacity = table.Column<int>(type: "int", nullable: false),
-                    ActivedId = table.Column<int>(type: "int", nullable: false)
+                    ActivedId = table.Column<int>(type: "int", nullable: false, defaultValue: 1)
                 },
                 constraints: table =>
                 {
@@ -99,12 +103,11 @@ namespace PoolDA.Migrations
                 schema: "Pool",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     PoolId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     Salary = table.Column<decimal>(type: "decimal(11,2)", precision: 11, scale: 2, nullable: false),
-                    ActivedId = table.Column<int>(type: "int", nullable: false)
+                    ActivedId = table.Column<int>(type: "int", nullable: false, defaultValue: 1)
                 },
                 constraints: table =>
                 {
@@ -129,15 +132,15 @@ namespace PoolDA.Migrations
                 schema: "Pool",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     PoolId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: true),
                     EmployeeId = table.Column<int>(type: "int", nullable: true),
                     TicketTypeId = table.Column<int>(type: "int", nullable: false),
                     CreateTypeId = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(11,2)", precision: 11, scale: 2, nullable: false),
-                    ActivedId = table.Column<int>(type: "int", nullable: false)
+                    StartDate = table.Column<DateOnly>(type: "date", nullable: true, defaultValueSql: "GETDATE()"),
+                    EndDate = table.Column<DateOnly>(type: "date", nullable: true, defaultValueSql: "GETDATE()"),
+                    ActivedId = table.Column<int>(type: "int", nullable: false, defaultValue: 1)
                 },
                 constraints: table =>
                 {
@@ -159,8 +162,7 @@ namespace PoolDA.Migrations
                         name: "FK_Ticket_User_UserId",
                         column: x => x.UserId,
                         principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -168,15 +170,14 @@ namespace PoolDA.Migrations
                 schema: "Pool",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     TicketId = table.Column<int>(type: "int", nullable: false),
-                    CreateDate = table.Column<string>(type: "NCHAR(10)", nullable: false),
-                    CreateTime = table.Column<string>(type: "NCHAR(5)", nullable: false),
+                    CreateDateTime = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
                     TicketTypeId = table.Column<int>(type: "int", nullable: false),
                     PayTypeId = table.Column<int>(type: "int", nullable: false),
                     CreateTypeId = table.Column<int>(type: "int", nullable: false),
-                    ActivedId = table.Column<int>(type: "int", nullable: false)
+                    Price = table.Column<decimal>(type: "decimal(11,2)", precision: 11, scale: 2, nullable: false),
+                    ActivedId = table.Column<int>(type: "int", nullable: false, defaultValue: 1)
                 },
                 constraints: table =>
                 {
@@ -195,20 +196,17 @@ namespace PoolDA.Migrations
                 schema: "Pool",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     PoolId = table.Column<int>(type: "int", nullable: false),
                     SansId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: true),
                     TicketId = table.Column<int>(type: "int", nullable: false),
                     EmployeeId = table.Column<int>(type: "int", nullable: true),
                     IsConfirm = table.Column<int>(type: "int", nullable: false),
-                    ConfirmDate = table.Column<string>(type: "NCHAR(10)", nullable: false),
-                    ConfirmTime = table.Column<string>(type: "NCHAR(5)", nullable: false),
-                    CreateDate = table.Column<string>(type: "NCHAR(10)", nullable: false),
-                    CreateTime = table.Column<string>(type: "NCHAR(5)", nullable: false),
+                    ConfirmDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateTime = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
                     CreateTypeId = table.Column<int>(type: "int", nullable: false),
-                    ActivedId = table.Column<int>(type: "int", nullable: false)
+                    ActivedId = table.Column<int>(type: "int", nullable: false, defaultValue: 1)
                 },
                 constraints: table =>
                 {
@@ -263,6 +261,12 @@ namespace PoolDA.Migrations
                 table: "Pay",
                 column: "TicketId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pool_PoolId",
+                schema: "Pool",
+                table: "Pool",
+                column: "PoolId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reserved_EmployeeId",

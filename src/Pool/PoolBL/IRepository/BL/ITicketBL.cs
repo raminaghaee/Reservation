@@ -1,6 +1,4 @@
-﻿using PoolBL.Dtos;
-
-namespace PoolBL;
+﻿namespace PoolBL;
 public interface ITicketBL : IBaseBL<ITicketDA,Ticket,DtoTicket>
 {
 }

@@ -9,13 +9,16 @@ public class Constant : BaseEntity
     [Required]
     [MaxLength(20)]
     public string Title { get; set; }
-    public int IsActived { get ; set; } //=102;
 
     [Required]
     [MaxLength(20)]
     public string TypeName { get; set; }
 
     [MaxLength(50)]
-    public string Value { get; set; }
+    public string? Value { get; set; }
+
+    [Required]
+    [MaxLength(20)]
+    public string SubSistem { get; set; }
 }
 

@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using PoolBL;
-using PoolBL.Dtos;
-using PoolBL.IRepository.BL;
+using System.Diagnostics;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace PoolUI.Controllers;
 [ApiController]
@@ -23,6 +24,7 @@ public class UserController : ControllerBase
     {
         return _userBL.GetAllAsNoTracking();
     }
+    
     #endregion
     #region Manipulate
     [HttpPost]

@@ -1,41 +1,45 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PoolBL.Dtos;
-using PoolBL.IRepository.BL;
 using PoolBL;
 
 namespace PoolUI.Controllers;
+[ApiController]
+[Route("[controller]")]
 public class TicketController : ControllerBase
 {
-    #region Properties
-    private readonly Iti _userBL;
 
-    public UserController( userBL)
+    #region Properties
+    private readonly ITicketBL _ticketBL;
+
+    public TicketController(ITicketBL ticketBL)
     {
-        _userBL = userBL;
+        _ticketBL = ticketBL;
     }
     #endregion
     #region Get
     [HttpGet]
-    public ICollection<User> GetAllUser()
+    public ICollection<Ticket> GetAllTicket()
     {
-        return _userBL.GetAllAsNoTracking();
+        return _ticketBL.GetAllAsNoTracking();
     }
+
+
     #endregion
     #region Manipulate
     [HttpPost]
-    public int PostUser(DtoUser dtoUser)
+    public int PostTicket(DtoTicket dtoTicket)
     {
-        return _userBL.Insert(dtoUser);
+        return _ticketBL.Insert(dtoTicket);
     }
     [HttpDelete("{id}")]
-    public bool DeleteUser(int id)
+    public bool DeleteTicket(int id)
     {
-        return _userBL.Delete(id);
+        return _ticketBL.Delete(id);
     }
     [HttpPut("{id}")]
-    public bool PutUser(int id, DtoUser dtoUser)
+    public bool PutTicket(int id, DtoTicket dtoTicket)
     {
-        return _userBL.Update(id, dtoUser);
+        return _ticketBL.Update(id, dtoTicket);
     }
     #endregion
+
 }

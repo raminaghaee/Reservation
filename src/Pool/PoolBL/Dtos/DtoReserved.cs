@@ -16,32 +16,15 @@ public class DtoReserved : IBaseDto
     public int IsConfirm { get; set; }
 
     /// <summary>
-    /// yyyy-mm-dd
-    /// </summary>
-    [Column(TypeName = "NCHAR(10)")]
-    public string ConfirmDate { get; set; }
-    /// <summary>
-    /// 00:00
-    /// </summary>
-    [Column(TypeName = "NCHAR(5)")]
-    public string ConfirmTime { get; set; }
-
-    /// <summary>
-    /// yyyy-mm-dd
-    /// </summary>
-
-    [Column(TypeName = "NCHAR(10)")]
-    public string CreateDate { get; set; }
-
-    /// <summary>
-    /// 00:00
-    /// </summary>
-    [Column(TypeName = "NCHAR(5)")]
-    public string CreateTime { get; set; }
-
-
-    /// <summary>
     /// Internet , Operator , Stand
     /// </summary>
     public int CreateTypeId { get; set; }
+
+    public DateOnly ConfirmDate { get; set; }
+
+    public TimeOnly ConfirmTime { get; set; }
+
+    public DateOnly CreateDate { get; set; }
+
+    public TimeOnly CreateTime { get; set; }
 }

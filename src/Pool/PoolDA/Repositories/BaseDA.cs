@@ -59,19 +59,19 @@ public abstract class BaseDA<T> : IBaseDA<T>
                     (item.Entity as IEntity).Id = GetAllAsQueryable().Any() ? GetAllAsQueryable().Max(i => i.Id) + 1 : 1;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception(ex.Message);
             }
         }
         try
         {
             _db.SaveChanges();
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            return false;
+            throw new Exception(ex.Message);
+
         }
         return true;
     }

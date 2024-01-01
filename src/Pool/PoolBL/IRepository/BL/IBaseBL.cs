@@ -1,5 +1,4 @@
 ﻿using CMN;
-using PoolBL.Dtos;
 
 namespace PoolBL;
 public interface IBaseBL<T,E, D>

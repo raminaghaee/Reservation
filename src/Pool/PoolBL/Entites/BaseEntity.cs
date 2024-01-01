@@ -1,12 +1,16 @@
 ﻿using CMN;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace PoolBL;
 public class BaseEntity : IEntity
 {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.None)]
     public int Id { get ; set; }
     /// <summary>
-    /// Active = 102 , Not Active = 103
+    /// Active = 1 , Not Active = 2
     /// In Constant Table
     /// </summary>
     public int ActivedId { get ; set ; }

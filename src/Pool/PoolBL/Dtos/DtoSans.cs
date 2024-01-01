@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace PoolBL;
 public class DtoSans : IBaseDto
 {
+    public int PoolId { get; set; }
     /// <summary>
     /// Active = 102 , Not Active = 103
     /// In Constant Table
@@ -15,10 +16,8 @@ public class DtoSans : IBaseDto
     /// </summary>
     public int DayOfWeekId { get; set; }
 
-    [Column(TypeName = "NCHAR(5)")]
     public string StartTime { get; set; }
 
-    [Column(TypeName = "NCHAR(5)")]
     public string EndTime { get; set; }
 
     public ushort Capacity { get; set; }

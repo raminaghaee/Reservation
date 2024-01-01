@@ -5,9 +5,9 @@ public partial class User : BaseEntity
 {
    
     #region Relations
-    public ICollection<Employee> Employees { get; set; }
-    public ICollection<Ticket> Tickets { get; set; }
-    public ICollection<Reserved> Reserveds { get; set; }
+    public ICollection<Employee>? Employees { get; set; }
+    public ICollection<Ticket>? Tickets { get; set; }
+    public ICollection<Reserved>? Reserveds { get; set; }
     #endregion
     #region Properties
     [MaxLength(20)]
