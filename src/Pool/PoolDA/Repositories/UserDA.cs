@@ -19,32 +19,4 @@ public class UserDA : BaseDA<User>, IUserDA
     }
 
 
-    public ICollection<User> GetByDate(int poolId, DateOnly startDate, DateOnly endDate)
-             => _db.User
-                    .Where(u => u.Tickets.Any(t => t.PoolId == poolId && t.StartDate >= startDate && t.EndDate <= endDate))
-                    .ToList();
-
-
-    public ICollection<User> GetByDate(int poolId, DateOnly date)
-            => _db.User
-                    .Where(u => u.Tickets.Any(t => t.PoolId == poolId && t.StartDate == date))
-                    .ToList();
-
-    public int GetCountCostumerByDate(int poolId, DateOnly startDate, DateOnly endDate)
-            => _db.User
-                    .Where(u => u.Tickets.Any(t => t.PoolId == poolId && t.StartDate >= startDate && t.EndDate <= endDate))
-                    .Count();
-
-    public int GetCountCostumerByDate(int poolId, DateOnly date)
-            => _db.User
-                    .Where(u => u.Tickets.Any(t => t.PoolId == poolId && t.StartDate == date))
-                    .Count();
-
-    public IQueryable<User> GetIQueryableByDate(int poolId, DateOnly startDate, DateOnly endDate)
-             => _db.User
-                    .Where(u => u.Tickets.Any(t => t.PoolId == poolId && t.StartDate >= startDate && t.EndDate <= endDate));
-
-    public IQueryable<User> GetIQueryableByDate(int poolId, DateOnly date)
-            => _db.User
-                    .Where(u => u.Tickets.Any(t => t.PoolId == poolId && t.StartDate == date));
 }

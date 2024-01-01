@@ -4,6 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace PoolBL;
 public class DtoReserved : IBaseDto
 {
+    public int PoolId { get; set; }
+    public int SansId { get; set; }
+    public int? UserId { get; set; }
+    public int? EmployeeId { get; set; }
+    public int TicketId { get; set; }
     /// <summary>
     /// Active = 102 , Not Active = 103
     /// In Constant Table
@@ -19,12 +24,4 @@ public class DtoReserved : IBaseDto
     /// Internet , Operator , Stand
     /// </summary>
     public int CreateTypeId { get; set; }
-
-    public DateOnly ConfirmDate { get; set; }
-
-    public TimeOnly ConfirmTime { get; set; }
-
-    public DateOnly CreateDate { get; set; }
-
-    public TimeOnly CreateTime { get; set; }
 }

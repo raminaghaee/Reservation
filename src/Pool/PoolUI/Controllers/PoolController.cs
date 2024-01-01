@@ -16,11 +16,29 @@ public class PoolController : ControllerBase
     }
     #endregion
     #region Get
-    [HttpGet]
-    public ICollection<Pool> GetAllUser()
+    [HttpGet("GetAllPool")]
+    public ICollection<Pool> GetAllPool()
     {
         return _poolBL.GetAllAsNoTracking();
     }
+    [HttpGet("GetNotConfirm")]
+    public List<DtoPoolGetCount> GetNotConfirm()
+    {
+        return _poolBL.GetNotConfirm();
+    }
+    [HttpGet("GetPoolMaxTicket")]
+    public Pool GetPoolMaxTicket()
+    {
+        return _poolBL.GetPoolMaxTicket();
+    }
+    [HttpGet("GetPoolMaxNotConfirm")]
+    public Pool GetPoolMaxNotConfirm()
+    {
+        return _poolBL.GetPoolMaxNotConfirm();
+    }
+
+
+
     #endregion
     #region Manipulate
     [HttpPost]
