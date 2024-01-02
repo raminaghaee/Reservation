@@ -17,12 +17,12 @@ public class TicketController : ControllerBase
     }
     #endregion
     #region Get
-    //[HttpGet]
-    //public ICollection<Ticket> GetAllTicket()
-    //{
-    //    return _ticketBL.GetAllAsNoTracking();
-    //}
-    [HttpGet("{poolId}")]
+    [HttpGet]
+    public ICollection<Ticket> GetAllTicket()
+    {
+        return _ticketBL.GetAllAsNoTracking();
+    }
+    [HttpGet("GetCountCustomerPoolByDateBl/{poolId}")]
     public string GetCountCustomerPoolByDateBl(int poolId , string start , string end)
     {
         DateOnly startDate = DateOnly.Parse(start);
@@ -32,7 +32,7 @@ public class TicketController : ControllerBase
         stopwatch.Stop();
         return $"Time : {stopwatch.Elapsed} ,  Result : {result}";
     }
-    [HttpGet("{poolId},{start}")]
+    [HttpGet("GetCountCustomerPoolByDateDA/{poolId},{start}")]
     public string GetCountCustomerPoolByDateDA(int poolId, string start, string end)
     {
         DateOnly startDate = DateOnly.Parse(start);
@@ -42,7 +42,7 @@ public class TicketController : ControllerBase
         stopwatch.Stop();
         return $"Time : {stopwatch.Elapsed} ,  Result : {result}";
     }
-    [HttpGet]
+    [HttpGet("GetCountCustomerPoolByDateQuery")]
     public string GetCountCustomerPoolByDateQuery(int poolId, string start, string end)
     {
         DateOnly startDate = DateOnly.Parse(start);

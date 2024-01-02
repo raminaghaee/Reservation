@@ -12,34 +12,34 @@ public class PoolDA_ : BaseDA<Pool>, IPoolDA
         _db = Db;
     }
 
-    public Pool GetMaxNotConfirm()
+    public Pool GetMaxNotConfirm(DateTime startDateTime, DateTime endDateTime)
     {
         var result = _db.Pool
-                    .Select(p=> new
+                    .Select(p => new
                     {
                         Pool = p,
-                        count = p.Reserveds.Count(r=>r.IsConfirm == 21)
+                        count = p.Reserveds.Count(r => r.IsConfirm == 21 && (r.DateTime >= startDateTime || r.DateTime <= endDateTime))
                     })
-                    .OrderByDescending(n=>n.count)
+                    .OrderByDescending(n => n.count)
                     .FirstOrDefault();
         return result?.Pool;
     }
 
-    public Pool GetMaxTickets()
+    public Pool GetMaxTickets(DateOnly startDateTime, DateOnly endDateTime)
     {
         var result = _db.Pool
             .Select(p => new
             {
                 Pool = p,
-                count = p.Tickets.Count()
+                count = p.Tickets.Count(r => r.StartDate >= startDateTime || r.StartDate <= endDateTime)
             })
-            .OrderByDescending(p=>p.count)
+            .OrderByDescending(p => p.count)
             .FirstOrDefault();
 
         return result?.Pool;
     }
 
-    public List<DtoPoolGetCount> GetNotConfirm()
+    public List<DtoPoolGetCount> GetNotConfirm(DateTime startDateTime, DateTime endDateTime)
     {
         //اگر هر جایی مثل اینجا از دی تی او استفاده کنم هتوی خرواری از دی تی او ها گم میشم
         //return _db.Pool
@@ -55,7 +55,7 @@ public class PoolDA_ : BaseDA<Pool>, IPoolDA
                  .Select(p => new DtoPoolGetCount
                  {
                      Pool = p,
-                     Count = p.Reserveds.Count(r => r.IsConfirm == 21)
+                     Count = p.Reserveds.Count(r => r.IsConfirm == 21 && (r.DateTime >= startDateTime || r.DateTime <= endDateTime))
                  })
                  .OrderByDescending(p => p.Count)
                  .ToList();

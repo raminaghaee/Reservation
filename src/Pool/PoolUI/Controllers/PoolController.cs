@@ -21,20 +21,22 @@ public class PoolController : ControllerBase
     {
         return _poolBL.GetAllAsNoTracking();
     }
-    [HttpGet("GetNotConfirm")]
-    public List<DtoPoolGetCount> GetNotConfirm()
+    [HttpGet("GetNotConfirm/{startDateTime},{endDateTime}")]
+    public List<DtoPoolGetCount> GetNotConfirm(DateTime startDateTime, DateTime endDateTime)
     {
-        return _poolBL.GetNotConfirm();
+        return _poolBL.GetNotConfirm(startDateTime,endDateTime);
     }
-    [HttpGet("GetPoolMaxTicket")]
-    public Pool GetPoolMaxTicket()
+    [HttpGet("GetPoolMaxTicket/{startDateTime},{endDateTime}")]
+    public Pool GetPoolMaxTicket(string startDate, string endDate)
     {
-        return _poolBL.GetPoolMaxTicket();
+        DateOnly start = DateOnly.Parse(startDate);
+        DateOnly end = DateOnly.Parse(endDate);
+        return _poolBL.GetPoolMaxTicket(start, end);
     }
-    [HttpGet("GetPoolMaxNotConfirm")]
-    public Pool GetPoolMaxNotConfirm()
+    [HttpGet("GetPoolMaxNotConfirm/{startDateTime} ,{endDateTime}")]
+    public Pool GetPoolMaxNotConfirm(DateTime startDateTime, DateTime endDateTime)
     {
-        return _poolBL.GetPoolMaxNotConfirm();
+        return _poolBL.GetPoolMaxNotConfirm(startDateTime,endDateTime);
     }
 
 

@@ -1,9 +1,9 @@
 ﻿namespace PoolBL;
 public interface IPoolDA : IBaseDA<Pool>
 {
-    List<DtoPoolGetCount> GetNotConfirm();
-    Pool GetMaxTickets();
-    Pool GetMaxNotConfirm();
+    Pool GetMaxNotConfirm(DateTime startDateTime, DateTime endDateTime);
+    Pool GetMaxTickets(DateOnly startDateTime, DateOnly endDateTime);
+    List<DtoPoolGetCount> GetNotConfirm(DateTime startDateTime, DateTime endDateTime);
 
 
 }
