@@ -1,6 +1,7 @@
 ﻿using CMN;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using static CMN.Enums;
 
 
 namespace PoolBL;
@@ -13,6 +14,6 @@ public class BaseEntity : IEntity
     /// Active = 1 , Not Active = 2
     /// In Constant Table
     /// </summary>
-    public int ActivedId { get ; set ; }
+    public IsActived ActivedId { get ; set ; }
 }
 

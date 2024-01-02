@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using static CMN.Enums;
 
 namespace PoolBL;
 
@@ -17,18 +18,19 @@ public class Ticket : BaseEntity
     #endregion
 
     #region Properity
+
     /// <summary>
     /// Regolar = 15,
     /// VIP = 16 , 
     /// New = 17, 
     /// </summary>
-    public int TicketTypeId { get; set; }
+    public TicketType TicketTypeId { get; set; }
     /// <summary>
     /// Internet = 5
     /// , Operator = 6 
     /// , Stand = 7
     /// </summary>
-    public int CreateTypeId { get; set; }
+    public CreateType CreateTypeId { get; set; }
 
 
     public DateOnly? StartDate { get; set; }

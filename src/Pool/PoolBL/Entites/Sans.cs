@@ -15,7 +15,7 @@ public class Sans : BaseEntity
     /// <summary>
     /// in Constant Table
     /// </summary>
-    public int DayOfWeekId { get; set; }
+    public DayOfWeek DayOfWeekId { get; set; }
 
     public string StartTime { get; set; }
 

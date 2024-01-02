@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PoolBL;
+﻿using PoolBL;
 using PoolDA.Contexts;
 
 namespace PoolDA;

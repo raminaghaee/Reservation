@@ -3,19 +3,16 @@
 namespace PoolBL;
 public class PoolBL_ : BaseBL<IPoolDA, Pool, DtoPool>, IPoolBL
 {
-    private readonly IPoolDA _baseDA;
-
     public PoolBL_(IPoolDA baseDA) : base(baseDA)
     {
-        _baseDA = baseDA;
     }
 
+    public Pool GetMaxNotConfirm(DateTime startDateTime, DateTime endDateTime)
+            => GetMaxNotConfirm(startDateTime, endDateTime);
+
+    public Pool GetMaxTickets(DateOnly startDateTime, DateOnly endDateTime)
+            => GetMaxTickets(startDateTime, endDateTime);
+
     public List<DtoPoolGetCount> GetNotConfirm(DateTime startDateTime, DateTime endDateTime) 
-                =>  _baseDA.GetNotConfirm(startDateTime, endDateTime).ToList();
-    public Pool GetPoolMaxNotConfirm(DateTime startDateTime, DateTime endDateTime) 
-                => _baseDA.GetMaxNotConfirm(startDateTime, endDateTime);
-    public Pool GetPoolMaxTicket(DateOnly startDateTime, DateOnly endDateTime) 
-                => _baseDA.GetMaxTickets(startDateTime, endDateTime);
-
-
+                =>  GetNotConfirm(startDateTime, endDateTime).ToList();
 }

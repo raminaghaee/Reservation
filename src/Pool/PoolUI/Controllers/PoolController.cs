@@ -31,12 +31,12 @@ public class PoolController : ControllerBase
     {
         DateOnly start = DateOnly.Parse(startDate);
         DateOnly end = DateOnly.Parse(endDate);
-        return _poolBL.GetPoolMaxTicket(start, end);
+        return _poolBL.GetMaxTickets(start, end);
     }
     [HttpGet("GetPoolMaxNotConfirm/{startDateTime} ,{endDateTime}")]
     public Pool GetPoolMaxNotConfirm(DateTime startDateTime, DateTime endDateTime)
     {
-        return _poolBL.GetPoolMaxNotConfirm(startDateTime,endDateTime);
+        return _poolBL.GetMaxNotConfirm(startDateTime,endDateTime);
     }
 
 

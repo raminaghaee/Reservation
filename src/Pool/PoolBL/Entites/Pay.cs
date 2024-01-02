@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using static CMN.Enums;
 
 namespace PoolBL;
 
@@ -14,20 +15,17 @@ public class Pay : BaseEntity
    
     public DateTime CreateDateTime { get; set; }
 
-    /// <summary>
-    /// VIP , Regolar , New
-    /// in Const Table
-    /// </summary>
-    public int TicketTypeId { get; set; }
+
+    public TicketType TicketTypeId { get; set; }
     /// <summary>
     ///Paid, used , Ebtal , faskh
     ///In Const Table
     /// </summary>
-    public int PayTypeId { get; set; }
+    public PayType PayTypeId { get; set; }
     /// <summary>
     /// Internet , Operator , Stand
     /// </summary>
-    public int CreateTypeId { get; set; }
+    public CreateType CreateTypeId { get; set; }
     public decimal Price { get; set; }
 
     #endregion

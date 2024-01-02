@@ -25,9 +25,9 @@ public abstract class BaseDA<T> : IBaseDA<T>
             _db.Entry(entity).State = EntityState.Deleted;
             Save();
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            return false;
+            throw new Exception(ex.Message);
         }
         return true;
     }
@@ -40,9 +40,9 @@ public abstract class BaseDA<T> : IBaseDA<T>
             Save();
             return entity;
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            return null;
+            throw new Exception(ex.Message);
         }
     }
 
@@ -83,9 +83,9 @@ public abstract class BaseDA<T> : IBaseDA<T>
             _db.Entry(entity).State = EntityState.Modified;
             Save();
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            return false;
+            throw new Exception(ex.Message);
         }
         return true;
     }

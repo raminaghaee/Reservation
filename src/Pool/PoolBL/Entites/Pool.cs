@@ -9,7 +9,7 @@ public class Pool : BaseEntity
     #region Realation
     public ICollection<Employee>? Employees { get; set; }
     public ICollection<Ticket>? Tickets { get; set; }
-    public ICollection<Reserved>? Reserveds { get; set; }
+    public ICollection<Reserved> Reserveds { get; set; } //=  Enumerable.Empty<Reserved>().ToList();
     public ICollection<Sans>? Sans { get; set; }
 
     #endregion

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using static CMN.Enums;
 
 namespace PoolBL;
 
@@ -24,19 +25,14 @@ public class Reserved : BaseEntity
     #endregion
 
     #region Properties
-    /// <summary>
-    /// Confirm = 3 ,  Not Confirm = 4
-    /// in Constant table
-    /// </summary>
-    public int IsConfirm { get; set; }
+
+    public IsConfirm IsConfirm { get; set; }
 
     public DateTime ConfirmDateTime { get; set; }
     public DateTime DateTime { get; set; }
 
-    /// <summary>
-    /// Internet , Operator , Stand
-    /// </summary>
-    public int CreateTypeId { get; set; }
+
+    public CreateType CreateTypeId { get; set; }
     #endregion
 
 }
