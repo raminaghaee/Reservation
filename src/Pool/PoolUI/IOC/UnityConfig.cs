@@ -1,5 +1,6 @@
 ﻿using PoolBL;
 using PoolDA;
+using PoolDA.Repositories;
 
 namespace PoolUI.IOC;
 
@@ -42,7 +43,7 @@ public static class UnityConfig
         services.AddTransient<IUserBL, UserBl>();
         #endregion
 
-
+        services.AddTransient<ISampleAdoDA,SampleAdoDA>();
 
 
     }

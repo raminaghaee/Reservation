@@ -1,10 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using PoolBL;
 using PoolDA.Contexts;
+using System.Data;
 
 
 namespace PoolDA;
-public class TicketDA : BaseDA<Ticket>, ITicketDA
+public class TicketDA : BaseDA<Ticket>, ITicketDA 
 {
     public TicketDA(PoolDbContext Db) : base(Db)
     {
@@ -35,7 +38,7 @@ public class TicketDA : BaseDA<Ticket>, ITicketDA
                     .Where(t => t.PoolId == poolId && t.StartDate >= startDate && t.EndDate <= endDate)
                     .ToList();
 
-    
+
     /// <summary>
     /// این روش درستی نیست و باید اناموریبل برگردانیم
     /// </summary>
@@ -46,15 +49,15 @@ public class TicketDA : BaseDA<Ticket>, ITicketDA
              => GetAllAsQueryable()
                     .Where(t => t.PoolId == poolId && t.StartDate >= startDate && t.EndDate <= endDate);
 
-    
 
 
 
 
-    public ICollection<Ticket> GetCountCostumerByPoolName(string Name)
+
+    public int GetCountCostumerByPoolName(string Name)
     {
         return GetAllAsQueryable().AsNoTracking()
-                        .Where(t=>t.Pool.Name.Contains(Name)).ToList();
+                        .Where(t => t.Pool.Name.Contains(Name)).ToList().Count();
     }
 
     public int GetCountCostumerByDate(int poolId, DateOnly date)

@@ -9,7 +9,7 @@ public class TicketBL : BaseBL<ITicketDA, Ticket, DtoTicket>, ITicketBL
     public int GetCountCostumerByDate(int poolId, DateOnly startDate, DateOnly endDate)
            => GetCountCostumerByDate(poolId, startDate, endDate);
 
-    public ICollection<Ticket> GetCountCostumerByPoolName(string Name)
+    public int GetCountCostumerByPoolName(string Name)
             => GetCountCostumerByPoolName(Name);
 
     public int GetCountCostumerByDate(int poolId, DateOnly date)

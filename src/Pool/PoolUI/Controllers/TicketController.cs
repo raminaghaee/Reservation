@@ -22,36 +22,18 @@ public class TicketController : ControllerBase
     {
         return _ticketBL.GetAllAsNoTracking();
     }
-    [HttpGet("GetCountCustomerPoolByDateBl/{poolId}")]
-    public string GetCountCustomerPoolByDateBl(int poolId , string start , string end)
-    {
-        DateOnly startDate = DateOnly.Parse(start);
-        DateOnly endDate = DateOnly.Parse(end);
-        Stopwatch stopwatch = Stopwatch.StartNew();
-        var result = _ticketBL.GetCountCoustomerByDateBL(poolId,startDate,endDate);
-        stopwatch.Stop();
-        return $"Time : {stopwatch.Elapsed} ,  Result : {result}";
-    }
+
     [HttpGet("GetCountCustomerPoolByDateDA/{poolId},{start}")]
     public string GetCountCustomerPoolByDateDA(int poolId, string start, string end)
     {
         DateOnly startDate = DateOnly.Parse(start);
         DateOnly endDate = DateOnly.Parse(end);
         Stopwatch stopwatch = Stopwatch.StartNew();
-        var result = _ticketBL.GetCountCoustomerByDateDA(poolId, startDate, endDate);
+        var result = _ticketBL.GetCountCostumerByDate(poolId, startDate, endDate);
         stopwatch.Stop();
         return $"Time : {stopwatch.Elapsed} ,  Result : {result}";
     }
-    [HttpGet("GetCountCustomerPoolByDateQuery")]
-    public string GetCountCustomerPoolByDateQuery(int poolId, string start, string end)
-    {
-        DateOnly startDate = DateOnly.Parse(start);
-        DateOnly endDate = DateOnly.Parse(end);
-        Stopwatch stopwatch = Stopwatch.StartNew();
-        var result = _ticketBL.GetCountCoustomerByDateQuery(poolId, startDate, endDate);
-        stopwatch.Stop();
-        return $"Time : {stopwatch.Elapsed} ,  Result : {result}";
-    }
+
 
     [HttpGet("poolName")]
     public int GetCountCustomerPoolByPoolName(string poolName)
